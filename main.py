@@ -14,15 +14,14 @@ def main():
     # Setup screen size
     size = width, height = 1000, 1000
     screen = pygame.display.set_mode(size)
+    # Background color as a tuple
+    black = 0, 0, 0
 
     # Objects currently in the "world"
     world_objects = []
 
     # Test spawning an obj
     world_objects = spawn_object(world_objects, 5.0, 5.0, 0, 0)
-
-    # Background color as a tuple
-    black = 0, 0, 0
 
     # Main loop
     while True:
@@ -31,7 +30,7 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-        # Render each object in the currently active set
+        # Calculate movement for each object and apply it, then render
         for obj in world_objects:
             obj.rect = obj.rect.move(obj.speed)
             if obj.rect.left < 0 or obj.rect.right > width:
