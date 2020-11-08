@@ -4,9 +4,10 @@ from object import object
 import pygame
 
 
-def spawn_object(vel_x: float, vel_y: float, accel_x: float, accel_y: float):
+def spawn_object(objects, vel_x: float, vel_y: float, accel_x: float, accel_y: float):
     obj = object(vel_y, vel_x, accel_x, accel_y, "assets/ball.png")
-    return obj
+    objects.append(obj)
+    return objects
 
 
 def main():
@@ -18,9 +19,9 @@ def main():
     world_objects = []
 
     # Test spawning an obj
-    world_objects.append(spawn_object(5.0, 5.0, 0, 0))
+    world_objects = spawn_object(world_objects, 5.0, 5.0, 0, 0)
 
-    # Tutorial
+    # Background color as a tuple
     black = 0, 0, 0
 
     # Main loop
