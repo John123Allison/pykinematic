@@ -1,11 +1,11 @@
 import sys
 from typing import List
-from object import object
+from object import physics_object
 import pygame
 
 
 def spawn_object(objects, vel_x: float, vel_y: float, accel_x: float, accel_y: float):
-    obj = object(vel_y, vel_x, accel_x, accel_y, "assets/ball.png")
+    obj = physics_object(vel_y, vel_x, accel_x, accel_y, "assets/ball.png")
     objects.append(obj)
     return objects
 
@@ -32,6 +32,7 @@ def main():
 
         # Calculate movement for each object and apply it, then render
         for obj in world_objects:
+            # Apply movement and "bounce" off of walls
             obj.rect = obj.rect.move(obj.speed)
             if obj.rect.left < 0 or obj.rect.right > width:
                 obj.speed[0] = -obj.speed[0]

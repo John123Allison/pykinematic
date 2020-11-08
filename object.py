@@ -4,7 +4,7 @@ from pygame import Rect, Surface
 import pygame
 
 
-class object:
+class physics_object:
     """
     A physical object in the world. Has attributes for velocity in X and Y, acceleration in X and Y,
     and a related asset. The object does not actually get drawn on the screen, but is instead a
