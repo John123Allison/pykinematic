@@ -5,11 +5,11 @@ import pygame
 
 def main():
     # Setup screen size
-    size = width, height = 400, 400
+    size = width, height = 1000, 1000
     screen = pygame.display.set_mode(size)
 
     # Tutorial
-    speed: List[float] = [2.0, 2.0]
+    speed: List[float] = [5.0, 5.0]
     black = 0, 0, 0
 
     ball = pygame.image.load("assets/ball.png")
