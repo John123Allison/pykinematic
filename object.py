@@ -34,6 +34,6 @@ def spawn_object(objects, vel_x: float, vel_y: float, accel_x: float, accel_y: f
     Takes a list of physics objects as a parameter and then returns a list appended with a new 
     object with the given parameters. 
     """
-    obj = PhysicsObject(vel_y, vel_x, accel_x, accel_y, "assets/ball.png")
+    obj = PhysicsObject(vel_y, vel_x, accel_x, accel_y, "assets/ball.jpg")
     objects.append(obj)
     return objects

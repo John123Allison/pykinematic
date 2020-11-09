@@ -1,7 +1,6 @@
 import sys
 
 import pygame
-import pygame_gui
 
 from object import spawn_object
 
@@ -16,15 +15,10 @@ def main():
     # Objects currently in the "world"
     world_objects = []
 
-    # GUI manager
-    manager = pygame_gui.UIManager((800, 600))
-    clock = pygame.time.Clock()
+    # TODO: GUI elements
 
-    # FIXME: Problem with library? Who can know.
-    # Add a button the screen
-    hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),
-                                                text='Say Hello',
-                                                manager=manager)
+    # Track time delta
+    clock = pygame.time.Clock()
 
     # Test spawning an obj
     world_objects = spawn_object(world_objects, 5.0, 5.0, 0, 0)
@@ -38,15 +32,9 @@ def main():
             # Check for exit condition
             if event.type == pygame.QUIT:
                 sys.exit()
-            # Handle button presses
-            if event.type == pygame.USEREVENT:
-                if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                    if event.ui_element == hello_button:
-                        print('Hello World!')
-            # Handle GUI updates
-            manager.process_events(event)
 
-        # Calculate movement for each object and apply it, then render
+        # Calculate movement for each object and apply it, then renderi
+        # TODO: Add in acceleration changes
         for obj in world_objects:
             # Apply movement and "bounce" off of walls
             obj.rect = obj.rect.move(obj.speed)
@@ -59,10 +47,6 @@ def main():
             screen.fill(black)
             screen.blit(obj.surface, obj.rect)
             pygame.display.flip()
-
-        # Update and draw GUI
-        manager.update(time_delta)
-        manager.draw_ui(screen)
 
 
 if __name__ == "__main__":
