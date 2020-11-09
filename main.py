@@ -20,7 +20,7 @@ def main():
     manager = pygame_gui.UIManager((800, 600))
     clock = pygame.time.Clock()
 
-    # TODO: Figure out why this isn't working lol
+    # FIXME: Problem with library? Who can know.
     # Add a button the screen
     hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),
                                                 text='Say Hello',
