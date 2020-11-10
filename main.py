@@ -20,9 +20,9 @@ def main():
 
     # TODO: GUI elements
     manager = pygame_gui.UIManager(size)
-    hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1800, 50), (100, 50)),
-                                                text='Say Hello',
-                                                manager=manager)
+    slider_rect = pygame.Rect(30, 20, 1000, 20)
+    x_acceleration_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=slider_rect,
+                                                start_value=0, value_range=(0,1), manager=manager)
 
     # Track time delta
     clock = pygame.time.Clock()
@@ -39,10 +39,15 @@ def main():
             # Check for exit condition
             if event.type == pygame.QUIT:
                 sys.exit()
+            # Handle x_acceleration_slider changes
+            if event.type == pygame.USEREVENT:
+                if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
+                    if event.ui_element == x_acceleration_slider:
+                        obj.accel_x = event.value
             # Handle GUI events
             manager.process_events(event)
 
-        # Calculate movement for each object and apply it, then renderi
+        # Calculate movement for each object and apply it, then render
         for obj in world_objects:
             # Apply acceleration to object's movement
             obj.speed[0] += obj.accel_x
