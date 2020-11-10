@@ -7,8 +7,10 @@ from object import spawn_object
 
 
 def main():
+    pygame.init()
+
     # Setup screen size
-    size = width, height = 1000, 1000
+    size = width, height = 1900, 1000
     screen = pygame.display.set_mode(size)
     # Background color as a tuple
     black = 0, 0, 0
@@ -17,7 +19,10 @@ def main():
     world_objects = []
 
     # TODO: GUI elements
-    manager = pygame_gui.UIManager((800, 600))
+    manager = pygame_gui.UIManager(size)
+    hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1800, 50), (100, 50)),
+                                                text='Say Hello',
+                                                manager=manager)
 
     # Track time delta
     clock = pygame.time.Clock()
@@ -36,8 +41,7 @@ def main():
                 sys.exit()
             # Handle GUI events
             manager.process_events(event)
-        # handle GUI updates
-        manager.update(time_delta)
+
         # Calculate movement for each object and apply it, then renderi
         for obj in world_objects:
             # Apply acceleration to object's movement
@@ -52,8 +56,11 @@ def main():
             # Fill the screen and display
             screen.fill(black)
             screen.blit(obj.surface, obj.rect)
-            manager.draw_ui(screen)
-            pygame.display.flip()
+
+        # Handle GUI updates
+        manager.update(time_delta)
+        manager.draw_ui(screen)
+        pygame.display.update()
 
 
 if __name__ == "__main__":
