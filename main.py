@@ -22,12 +22,12 @@ def main():
                                                                    start_value=0, value_range=(0, 1), manager=manager)
     x_accel_label_rect = pygame.Rect(60, 60, 40, 40)
     x_acceleration_label = pygame_gui.elements.UILabel(relative_rect=x_accel_label_rect,
-                                                       text="", manager=manager)
+                                                       text="Hello", manager=manager)
 
     clock = pygame.time.Clock()
 
     # Test spawning an obj
-    world_objects = spawn_object(world_objects, 0, 0, .5, .98)
+    world_objects = spawn_object(world_objects, 1, 0, 0, .98)
 
     # Main loop
     while True:
@@ -42,8 +42,8 @@ def main():
                 if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                     if event.ui_element == x_acceleration_slider:
                         obj.accel_x = event.value
-                        x_acceleration_label.text = event.value
-            # Handle GUI events
+                        if x_acceleration_label.text != event.value:
+                            x_acceleration_label.text = event.value
             manager.process_events(event)
 
         # Calculate movement for each object and apply it, then render
@@ -60,7 +60,7 @@ def main():
             screen.fill(black)
             screen.blit(obj.surface, obj.rect)
 
-        # Handle GUI updates
+        # Update the screen
         manager.update(time_delta)
         manager.draw_ui(screen)
         pygame.display.update()
