@@ -9,7 +9,7 @@ from object import spawn_object
 def main():
     # Setup
     pygame.init()
-    size = width, height = 1900, 900
+    size = width, height = 1500, 900
     screen = pygame.display.set_mode(size)
     black = 0, 0, 0
     world_objects = []
@@ -20,9 +20,9 @@ def main():
     x_accel_slider_rect = pygame.Rect(30, 20, 1000, 20)
     x_acceleration_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=x_accel_slider_rect,
                                                                    start_value=0, value_range=(0, 10), manager=manager)
-    x_accel_label_rect = pygame.Rect(60, 60, 40, 40)
-    x_acceleration_label = pygame_gui.elements.UILabel(relative_rect=x_accel_label_rect,
-                                                       text="Hello", manager=manager)
+    y_accel_slider_rect = pygame.Rect(30, 40, 1000, 20)
+    y_acceleration_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=y_accel_slider_rect,
+                                                                   start_value=0, value_range=(0, 10), manager=manager)
 
     clock = pygame.time.Clock()
 
@@ -42,8 +42,9 @@ def main():
                 if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                     if event.ui_element == x_acceleration_slider:
                         obj.accel_x = event.value * .10
-                        if x_acceleration_label.text != event.value:
-                            x_acceleration_label.text = event.value
+                    if event.ui_element == y_acceleration_slider:
+                        obj.accel_y = event.value * .10
+
             manager.process_events(event)
 
         # Calculate movement for each object and apply it, then render
