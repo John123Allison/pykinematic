@@ -15,7 +15,7 @@ def main():
     black = 0, 0, 0
     world_objects = []
 
-    # TODO: Setup GUI elements
+    # Setup GUI elements
     manager = pygame_gui.UIManager(size)
 
     x_accel_slider_rect = pygame.Rect(30, 20, 1000, 20)
@@ -42,16 +42,16 @@ def main():
             if event.type == pygame.USEREVENT:
                 if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                     if event.ui_element == x_acceleration_slider:
-                        obj.accel_x = event.value * .10
+                        obj.accel[0] = event.value * .10
                     if event.ui_element == y_acceleration_slider:
-                        obj.accel_y = event.value * .10
+                        obj.accel[1] = event.value * .10
 
             manager.process_events(event)
 
         # Calculate movement for each object and apply it, then render
         for obj in world_objects:
-            obj.speed[0] += obj.accel_x
-            obj.speed[1] += obj.accel_y
+            obj.speed[0] += obj.accel[0]
+            obj.speed[1] += obj.accel[1]
             
             # TODO: adjust collision to not cause The Issue
             obj.rect = obj.rect.move(obj.speed)

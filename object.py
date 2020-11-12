@@ -16,11 +16,11 @@ class PhysicsObject:
     :param asset_path Local path to the object's associated visual asset
     """
     def __init__(self, velocity_x: float, velocity_y: float, accel_x: float, accel_y: float, asset_path: str):
+        # TODO: Figure out why circle isn't drawing all the way
         self.speed = [velocity_x, velocity_y]
-        self.accel_x = accel_x
-        self.accel_y = accel_y
+        self.accel = [accel_x, accel_y]
         self.surface = pygame.Surface((64, 64))
-        self.rect = pygame.draw.circle(self.surface, pygame.Color(255, 0, 0), (0, 0), 64)
+        self.rect = pygame.draw.circle(self.surface, pygame.Color(255, 0, 0), (100, 100), 64)
 
 
 def spawn_object(objects, vel_x: float, vel_y: float, accel_x: float, accel_y: float) -> List[PhysicsObject]:
