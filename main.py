@@ -5,7 +5,13 @@ import pygame_gui
 
 from object import spawn_object
 
+GRAVITY = 9.8
+SCALE_FACTOR = .1
 
+"""
+TODO: Look into ways to abstract some of the code into different functions,
+      read docs to figure out how to manage state more effectively.
+"""
 def main():
     # Setup
     pygame.init()
@@ -16,6 +22,7 @@ def main():
     world_objects = []
 
     # Setup GUI elements
+    # TODO: Add labels for sliders
     manager = pygame_gui.UIManager(size)
 
     x_accel_slider_rect = pygame.Rect(30, 20, 1000, 20)
@@ -28,7 +35,7 @@ def main():
     clock = pygame.time.Clock()
 
     # Test spawning an obj
-    world_objects = spawn_object(world_objects, 1, 0, 0, .98)
+    world_objects = spawn_object(world_objects, 1, 0, 0, 0)
 
     # Main loop
     while True:
@@ -42,14 +49,15 @@ def main():
             if event.type == pygame.USEREVENT:
                 if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                     if event.ui_element == x_acceleration_slider:
-                        obj.accel[0] = event.value * .10
+                        obj.accel[0] = event.value * SCALE_FACTOR
                     if event.ui_element == y_acceleration_slider:
-                        obj.accel[1] = event.value * .10
+                        obj.accel[1] = event.value * SCALE_FACTOR
 
             manager.process_events(event)
 
         # Calculate movement for each object and apply it, then render
         for obj in world_objects:
+            # TODO: Add in air resistance
             obj.speed[0] += obj.accel[0]
             obj.speed[1] += obj.accel[1]
             
