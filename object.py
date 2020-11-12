@@ -15,18 +15,12 @@ class PhysicsObject:
     :param accel_y The object's y acceleration
     :param asset_path Local path to the object's associated visual asset
     """
-    speed: List[float]
-    accel_x: float
-    accel_y: float
-    surface: pygame.Surface
-    rect: pygame.Rect
-
     def __init__(self, velocity_x: float, velocity_y: float, accel_x: float, accel_y: float, asset_path: str):
         self.speed = [velocity_x, velocity_y]
         self.accel_x = accel_x
         self.accel_y = accel_y
-        self.surface = pygame.image.load(asset_path)
-        self.rect = self.surface.get_rect()
+        self.surface = pygame.Surface((100, 100))
+        self.rect = pygame.draw.circle(self.surface, pygame.Color(255, 0, 0), (0, 0), 5) # red
 
 
 def spawn_object(objects, vel_x: float, vel_y: float, accel_x: float, accel_y: float) -> List[PhysicsObject]:

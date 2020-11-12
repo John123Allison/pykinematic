@@ -52,12 +52,14 @@ def main():
         for obj in world_objects:
             obj.speed[0] += obj.accel_x
             obj.speed[1] += obj.accel_y
-
+            
+            # TODO: adjust collision to not cause The Issue
             obj.rect = obj.rect.move(obj.speed)
             if obj.rect.left < 0 or obj.rect.right > width:
+
                 obj.speed[0] = -obj.speed[0]
             if obj.rect.top < 0 or obj.rect.bottom > height:
-                obj.speed[1] = -obj.speed[1]
+                obj.speed[1] = -obj.speed[1] 
 
             screen.fill(black)
             screen.blit(obj.surface, obj.rect)
