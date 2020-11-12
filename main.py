@@ -11,6 +11,7 @@ def main():
     pygame.init()
     size = width, height = 1500, 900
     screen = pygame.display.set_mode(size)
+    pygame.display.set_caption("PyKinematic")
     black = 0, 0, 0
     world_objects = []
 
