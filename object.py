@@ -19,8 +19,8 @@ class PhysicsObject:
         self.speed = [velocity_x, velocity_y]
         self.accel_x = accel_x
         self.accel_y = accel_y
-        self.surface = pygame.Surface((100, 100))
-        self.rect = pygame.draw.circle(self.surface, pygame.Color(255, 0, 0), (0, 0), 5) # red
+        self.surface = pygame.Surface((64, 64))
+        self.rect = pygame.draw.circle(self.surface, pygame.Color(255, 0, 0), (0, 0), 64)
 
 
 def spawn_object(objects, vel_x: float, vel_y: float, accel_x: float, accel_y: float) -> List[PhysicsObject]:
